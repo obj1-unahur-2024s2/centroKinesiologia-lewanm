@@ -2,6 +2,7 @@ class Paciente{
   var edad
   var dolor
   var fortaleza
+  const property aparatos = []
 
   method edad() = edad
   method dolor() = dolor
@@ -26,6 +27,22 @@ class Paciente{
   method usar(aparato){
     if(self.puedeUsar(aparato)){
       aparato.usar(self)
+    }
+  }
+
+  method asignarRutina(_aparatos){
+    aparatos.clear()
+    aparatos.addAll(_aparatos)
+  }
+
+  method puedeRealizarRutina(){
+    return aparatos.all({aparato => self.puedeUsar(aparato)})
+  }
+
+  method realizarRutina(){
+    if (self.puedeRealizarRutina()){
+      aparatos.forEach({aparato => self.usar(aparato)})
+
     }
   }
 }

@@ -40,3 +40,33 @@ describe "Test parte 1" {
     assert.equals(24, leonardo.fortaleza())
   }
 }
+
+describe "Tests parte 2" {
+  const leonardo = new Paciente(edad = 40, dolor = 10, fortaleza = 20)
+  const milena = new Paciente(edad = 3, dolor = 30, fortaleza = 50)
+  
+  const magneto = new Magneto()
+  const bicicleta = new Bicicleta()
+  const minitramp = new Minitramp()
+
+  method initialize() {
+    leonardo.asignarRutina([bicicleta,minitramp,bicicleta,magneto])
+    milena.asignarRutina([bicicleta,minitramp,bicicleta,magneto])
+
+  }
+  test "Leonardo puede hacer la rutina que tiene asignada." {
+    assert.that(leonardo.puedeRealizarRutina())
+  }
+
+  test "Después de hacerla una vez, su nivel de dolor baja a 1.8, y su fortaleza sube a 30."{
+    leonardo.realizarRutina()
+
+    assert.equals(1.8, leonardo.dolor())
+    assert.equals(30, leonardo.fortaleza())
+
+  }
+
+  test "Milena no puede hacer la rutina que tiene asignada."{
+    assert.notThat(milena.puedeRealizarRutina())
+  }
+}
